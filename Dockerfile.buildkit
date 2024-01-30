@@ -1,0 +1,4 @@
+FROM moby/buildkit:buildx-stable-1
+
+COPY registry.crt /usr/local/share/ca-certificates/
+RUN update-ca-certificates

@@ -4,6 +4,9 @@
 VERSION="$1"
 REGISTRY="${2:-docker.io}"
 NAMESPACE="${3:-library}"
+PREFIX="$REGISTRY/$NAMESPACE"
+
+PLATFORM="${PLATFORM:-linux/amd64,linux/arm64,linux/arm/v7}"
 
 
 usage()
@@ -13,28 +16,16 @@ usage()
 }
 
 
-[ -z "$VERSION" ] && usage
-
-
 set -euo pipefail
 set +x
 
-docker build \
+[ -z "$VERSION" ] && usage
+
+docker buildx build \
+    --builder=container \
     --build-arg VERSION="$VERSION" \
-    -t "$REGISTRY/$NAMESPACE/caddy-webdav:$VERSION" \
+    --platform "$PLATFORM" \
+    --push \
+    -t "$PREFIX/caddy-webdav:$VERSION" \
+    -t "$PREFIX/caddy-webdav:latest" \
     .
-
-PREFIX="$REGISTRY/$NAMESPACE"
-
-cat <<EOF
-
-If $VERSION is the latest release, you could also create a latest tag:
-
-docker tag $PREFIX/caddy-webdav:$VERSION $PREFIX/caddy-webdav:latest
-
-Push them with:
-
-docker push $PREFIX/caddy-webdav:$VERSION
-docker push $PREFIX/caddy-webdav:latest
-
-EOF
