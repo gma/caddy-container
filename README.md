@@ -23,13 +23,13 @@ compile a version of Caddy with the [mholt/caddy-webdav] module included.
 To build it on your machine, you can just clone this repository and then
 run:
 
-    docker build --build-arg VERSION=2.7.6 \
-        -t caddy-webdav:2.7.6 \
+    docker build --build-arg VERSION=2.8.4 \
+        -t caddy-webdav:2.8.4 \
         -t caddy-webdav:latest \
         .
 
 Note the `VERSION` argument, that specifies which version of Caddy we're
-going to build. 2.7.6 is the latest at the time of writing; see the
+going to build. 2.8.4 is the latest at the time of writing; see the
 [official Caddy image page] for a list of the latest available versions.
 
 [Caddy]: https://caddyserver.com
@@ -116,7 +116,7 @@ to use. You can use any of the tags on the [official Caddy image page].
 
 e.g.
 
-    ./build.sh 2.7.6
+    ./build.sh 2.8.4
 
 You can also (optionally) specify a namespace and a registry, which will
 be used in your tag.
@@ -128,17 +128,17 @@ By default it builds an image that supports three architectures:
 `linux/amd64`, `linux/arm64`, and `linux/arm/v7`. You can override that
 behaviour by setting the `PLATFORM` environment variable:
 
-    PLATFORM="linux/amd64,linux/arm64" ./build.sh 2.7.6
+    PLATFORM="linux/amd64,linux/arm64" ./build.sh 2.8.4
 
 So, to summarise, if you were to run it like this (as I do):
 
-    ./build.sh 2.7.6 registry.local
+    ./build.sh 2.8.4 registry.local
 
 …then you'd:
 
 - use your new docker-container driver to…
-- build a Caddy 2.7.6 image with WebDAV support compiled in,
-- named "registry.local/library/caddy-webdav" and tagged with "2.7.6", and
+- build a Caddy 2.8.4 image with WebDAV support compiled in,
+- named "registry.local/library/caddy-webdav" and tagged with "2.8.4", and
 - Docker would push it to `registry.local`
 
 You might be wondering why it pushes automatically. It's because a
