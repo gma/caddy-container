@@ -82,7 +82,7 @@ can handle a multi-platform build (i.e. a builder that uses the
 [docker-container driver]):
 
     docker buildx create --name container \
-        --driver=docker-container
+        --driver=docker-container \
         --driver-opt=image=buildkit-cert:latest
 
 If you're following along, and you don't need to push to a registry that
