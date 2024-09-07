@@ -144,7 +144,7 @@ So, to summarise, if you were to run it like this (as I do):
 You might be wondering why it pushes automatically. It's because a
 multi-platform image can't be loaded into your local image store, and if
 we didn't push it then at the end of the build process the images would
-[only be available][issue] in Docker's build cache. You wouldn't be to
+[only be available][issue] in Docker's build cache. You wouldn't be able to
 create containers from them, for example.
 
 Also, because I always push a new image to my local registry, it just
